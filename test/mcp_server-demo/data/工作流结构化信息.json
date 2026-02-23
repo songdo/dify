@@ -1,0 +1,210 @@
+{
+    "graph": {
+        "nodes": [
+            {
+                "id": "1768880535499",
+                "type": "custom",
+                "data": {
+                    "variables": [],
+                    "type": "start",
+                    "title": "用户输入",
+                    "selected": false
+                },
+                "position": {
+                    "x": 80,
+                    "y": 282
+                },
+                "targetPosition": "left",
+                "sourcePosition": "right",
+                "positionAbsolute": {
+                    "x": 80,
+                    "y": 282
+                },
+                "width": 242,
+                "height": 73,
+                "selected": true
+            },
+            {
+                "id": "1768880570852",
+                "type": "custom",
+                "data": {
+                    "model": {
+                        "provider": "langgenius/deepseek/deepseek",
+                        "name": "deepseek-chat",
+                        "mode": "chat",
+                        "completion_params": {
+                            "temperature": 0.7
+                        }
+                    },
+                    "prompt_template": [
+                        {
+                            "role": "system",
+                            "text": ""
+                        }
+                    ],
+                    "context": {
+                        "enabled": false,
+                        "variable_selector": []
+                    },
+                    "vision": {
+                        "enabled": false
+                    },
+                    "type": "llm",
+                    "title": "LLM",
+                    "selected": false
+                },
+                "position": {
+                    "x": 382,
+                    "y": 282
+                },
+                "targetPosition": "left",
+                "sourcePosition": "right",
+                "positionAbsolute": {
+                    "x": 382,
+                    "y": 282
+                },
+                "width": 242,
+                "height": 88
+            },
+            {
+                "id": "1768880685885",
+                "type": "custom",
+                "data": {
+                    "code": "\ndef main(arg1: str, arg2: str):\n    return {\n        \"result\": arg1 + arg2,\n    }\n",
+                    "code_language": "python3",
+                    "variables": [
+                        {
+                            "variable": "arg1",
+                            "value_selector": []
+                        },
+                        {
+                            "variable": "arg2",
+                            "value_selector": []
+                        }
+                    ],
+                    "outputs": {
+                        "result": {
+                            "type": "string",
+                            "children": null
+                        }
+                    },
+                    "type": "code",
+                    "title": "代码执行",
+                    "selected": true
+                },
+                "position": {
+                    "x": 684,
+                    "y": 282
+                },
+                "targetPosition": "left",
+                "sourcePosition": "right",
+                "positionAbsolute": {
+                    "x": 684,
+                    "y": 282
+                },
+                "width": 242,
+                "height": 52
+            }
+        ],
+        "edges": [
+            {
+                "id": "1768880535499-source-1768880570852-target",
+                "type": "custom",
+                "source": "1768880535499",
+                "sourceHandle": "source",
+                "target": "1768880570852",
+                "targetHandle": "target",
+                "data": {
+                    "sourceType": "start",
+                    "targetType": "llm",
+                    "isInIteration": false,
+                    "isInLoop": false
+                },
+                "zIndex": 0
+            },
+            {
+                "id": "1768880570852-source-1768880685885-target",
+                "type": "custom",
+                "source": "1768880570852",
+                "sourceHandle": "source",
+                "target": "1768880685885",
+                "targetHandle": "target",
+                "data": {
+                    "sourceType": "llm",
+                    "targetType": "code",
+                    "isInIteration": false,
+                    "isInLoop": false
+                },
+                "zIndex": 0
+            }
+        ],
+        "viewport": {
+            "x": -189,
+            "y": 11,
+            "zoom": 1
+        }
+    },
+    "features": {
+        "opening_statement": "",
+        "suggested_questions": [],
+        "suggested_questions_after_answer": {
+            "enabled": false
+        },
+        "text_to_speech": {
+            "enabled": false,
+            "voice": "",
+            "language": ""
+        },
+        "speech_to_text": {
+            "enabled": false
+        },
+        "retriever_resource": {
+            "enabled": true
+        },
+        "sensitive_word_avoidance": {
+            "enabled": false
+        },
+        "file_upload": {
+            "image": {
+                "enabled": false,
+                "number_limits": 3,
+                "transfer_methods": [
+                    "local_file",
+                    "remote_url"
+                ]
+            },
+            "enabled": false,
+            "allowed_file_types": [
+                "image"
+            ],
+            "allowed_file_extensions": [
+                ".JPG",
+                ".JPEG",
+                ".PNG",
+                ".GIF",
+                ".WEBP",
+                ".SVG"
+            ],
+            "allowed_file_upload_methods": [
+                "local_file",
+                "remote_url"
+            ],
+            "number_limits": 3,
+            "fileUploadConfig": {
+                "file_size_limit": 15,
+                "batch_count_limit": 5,
+                "file_upload_limit": 20,
+                "image_file_size_limit": 10,
+                "video_file_size_limit": 100,
+                "audio_file_size_limit": 50,
+                "workflow_file_upload_limit": 10,
+                "image_file_batch_limit": 10,
+                "single_chunk_attachment_limit": 10,
+                "attachment_image_file_size_limit": 2
+            }
+        }
+    },
+    "environment_variables": [],
+    "conversation_variables": [],
+    "hash": "a855918d9ed6a02efa712b61fc34c6b9bccf2282cb9c57c08a0bbb179e046230"
+}

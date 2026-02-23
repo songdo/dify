@@ -206,6 +206,7 @@ class WorkflowService:
         :raises WorkflowHashNotEqualError
         """
         # fetch draft workflow by app_model
+        # 先检查 hash 是否一致，为了避免不必要的数据库写操作
         workflow = self.get_draft_workflow(app_model=app_model)
 
         if workflow and workflow.unique_hash != unique_hash:
@@ -218,6 +219,7 @@ class WorkflowService:
         self.validate_graph_structure(graph=graph)
 
         # create draft workflow if not found
+        # 创建 或者 更新
         if not workflow:
             workflow = Workflow(
                 tenant_id=app_model.tenant_id,
@@ -233,7 +235,7 @@ class WorkflowService:
             db.session.add(workflow)
         # update draft workflow if found
         else:
-            workflow.graph = json.dumps(graph)
+            workflow.graph = json.dumps(graph) # 包含 nodes、 edges、configs
             workflow.features = json.dumps(features)
             workflow.updated_by = account.id
             workflow.updated_at = naive_utc_now()
@@ -941,6 +943,7 @@ class WorkflowService:
                 node_types.add(NodeType(node_type))
 
         # start node and trigger node cannot coexist
+        # 开始节点和触发节点不能共存
         if NodeType.START in node_types:
             if any(nt.is_trigger_node for nt in node_types):
                 raise ValueError("Start node and trigger nodes cannot coexist in the same workflow")

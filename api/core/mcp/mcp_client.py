@@ -32,6 +32,7 @@ class MCPClient:
         self._exit_stack = ExitStack()
         self._initialized = False
 
+    # with用法：上下文入口，负责准备资源
     def __enter__(self):
         self._initialize()
         self._initialized = True

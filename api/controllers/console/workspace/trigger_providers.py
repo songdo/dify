@@ -83,7 +83,7 @@ class TriggerProviderIconApi(Resource):
         return TriggerManager.get_trigger_plugin_icon(tenant_id=user.current_tenant_id, provider_id=provider)
 
 
-@console_ns.route("/workspaces/current/triggers")
+@console_ns.route("/workspaces/current/triggers") 
 class TriggerProviderListApi(Resource):
     @setup_required
     @login_required

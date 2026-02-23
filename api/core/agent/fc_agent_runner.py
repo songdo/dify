@@ -90,6 +90,7 @@ class FunctionCallAgentRunner(BaseAgentRunner):
             prompt_messages = self._organize_prompt_messages()
             self.recalc_llm_max_tokens(self.model_config, prompt_messages)
             # invoke model
+            # step1: 思考
             chunks: Union[Generator[LLMResultChunk, None, None], LLMResult] = model_instance.invoke_llm(
                 prompt_messages=prompt_messages,
                 model_parameters=app_generate_entity.model_conf.parameters,
@@ -100,7 +101,7 @@ class FunctionCallAgentRunner(BaseAgentRunner):
                 callbacks=[],
             )
 
-            tool_calls: list[tuple[str, str, dict[str, Any]]] = []
+            tool_calls: list[tuple[str, str, dict[str, Any]]] = []  # 保存工具调用信息 (tool_call_id, tool_call_name, tool_call_args)
 
             # save full response
             response = ""
@@ -113,6 +114,7 @@ class FunctionCallAgentRunner(BaseAgentRunner):
 
             if isinstance(chunks, Generator):
                 is_first_chunk = True
+                # step2: 提取工具调用
                 for chunk in chunks:
                     if is_first_chunk:
                         self.queue_manager.publish(
@@ -201,7 +203,8 @@ class FunctionCallAgentRunner(BaseAgentRunner):
                     for tool_call in tool_calls
                 ]
 
-            self._current_thoughts.append(assistant_message)
+            # step3: _current_thoughts记录当前的思考内容
+            self._current_thoughts.append(assistant_message)  
 
             # save thought
             self.save_agent_thought(
@@ -226,6 +229,7 @@ class FunctionCallAgentRunner(BaseAgentRunner):
                 raise AgentMaxIterationError(app_config.agent.max_iteration)
 
             # call tools
+            # step4： 调用工具
             tool_responses = []
             for tool_call_id, tool_call_name, tool_call_args in tool_calls:
                 tool_instance = tool_instances.get(tool_call_name)
