@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useMemo } from 'react'
 import { useGetLanguage } from '@/context/i18n'
 
@@ -14,3 +15,12 @@ export const useDatasetApiAccessUrl = () => {
 
   return apiReferenceUrl
 }
+=======
+import { useDocLink } from '@/context/i18n'
+
+export const useDatasetApiAccessUrl = () => {
+  const docLink = useDocLink()
+
+  return docLink('/api-reference/datasets/get-knowledge-base-list')
+}
+>>>>>>> upstream/main

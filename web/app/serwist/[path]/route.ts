@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { spawnSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
 import { createSerwistRoute } from '@serwist/turbopack'
@@ -12,3 +13,17 @@ export const { dynamic, dynamicParams, revalidate, generateStaticParams, GET } =
     basePath,
   },
 })
+=======
+import { createSerwistRoute } from '@serwist/turbopack'
+import { env } from '@/env'
+
+const basePath = env.NEXT_PUBLIC_BASE_PATH
+
+export const { dynamic, dynamicParams, revalidate, generateStaticParams, GET } = createSerwistRoute({
+  swSrc: 'app/sw.ts',
+  nextConfig: {
+    basePath,
+  },
+  useNativeEsbuild: true,
+})
+>>>>>>> upstream/main

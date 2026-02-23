@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import type { PluginDetail } from '../types'
 import {
   RiArrowLeftRightLine,
@@ -414,3 +415,7 @@ const DetailHeader = ({
 }
 
 export default DetailHeader
+=======
+// Re-export from refactored module for backward compatibility
+export { default } from './detail-header/index'
+>>>>>>> upstream/main

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use client'
 
 import type { ReactNode } from 'react'
@@ -64,3 +65,82 @@ export const ChatContextProvider = ({
 export const useChatContext = () => useContext(ChatContext)
 
 export default ChatContext
+=======
+'use client'
+
+import type { ReactNode } from 'react'
+import type { ChatProps } from './index'
+import { createContext, useContext } from 'use-context-selector'
+
+export type ChatContextValue = Pick<ChatProps, 'config'
+  | 'isResponding'
+  | 'chatList'
+  | 'showPromptLog'
+  | 'questionIcon'
+  | 'answerIcon'
+  | 'onSend'
+  | 'onRegenerate'
+  | 'onAnnotationEdited'
+  | 'onAnnotationAdded'
+  | 'onAnnotationRemoved'
+  | 'disableFeedback'
+  | 'onFeedback'
+  | 'getHumanInputNodeData'> & {
+    readonly?: boolean
+  }
+
+const ChatContext = createContext<ChatContextValue>({
+  chatList: [],
+  readonly: false,
+})
+
+type ChatContextProviderProps = {
+  children: ReactNode
+} & ChatContextValue
+
+export const ChatContextProvider = ({
+  children,
+  readonly = false,
+  config,
+  isResponding,
+  chatList,
+  showPromptLog,
+  questionIcon,
+  answerIcon,
+  onSend,
+  onRegenerate,
+  onAnnotationEdited,
+  onAnnotationAdded,
+  onAnnotationRemoved,
+  disableFeedback,
+  onFeedback,
+  getHumanInputNodeData,
+}: ChatContextProviderProps) => {
+  return (
+    <ChatContext.Provider value={{
+      config,
+      readonly,
+      isResponding,
+      chatList: chatList || [],
+      showPromptLog,
+      questionIcon,
+      answerIcon,
+      onSend,
+      onRegenerate,
+      onAnnotationEdited,
+      onAnnotationAdded,
+      onAnnotationRemoved,
+      disableFeedback,
+      onFeedback,
+      getHumanInputNodeData,
+    }}
+    >
+      {children}
+    </ChatContext.Provider>
+  )
+}
+
+export const useChatContext = () => useContext(ChatContext)
+
+export default ChatContext
+>>>>>>> upstream/main

@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 {
   "recommendations": [
     "bradlc.vscode-tailwindcss",
     "kisstkondoros.vscode-codemetrics"
   ]
 }
+=======
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "kisstkondoros.vscode-codemetrics",
+    "johnsoncodehk.vscode-tsslint",
+    "dbaeumer.vscode-eslint"
+  ]
+}
+>>>>>>> upstream/main

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import type {
   TagKey,
 } from './constants'
@@ -27,3 +28,21 @@ export const getDocsUrl = (locale: string, path: string) => {
 
   return `https://docs.dify.ai/${localePath}${path}`
 }
+=======
+import type {
+  TagKey,
+} from './constants'
+
+import {
+  categoryKeys,
+  tagKeys,
+} from './constants'
+
+export const getValidTagKeys = (tags: TagKey[]) => {
+  return tags.filter(tag => tagKeys.includes(tag))
+}
+
+export const getValidCategoryKeys = (category?: string) => {
+  return categoryKeys.find(key => key === category)
+}
+>>>>>>> upstream/main
